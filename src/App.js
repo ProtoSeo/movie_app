@@ -1,57 +1,26 @@
 import React from 'react';
 import propTypes from "prop-types";
-function Food({name, picture, rating}){
-  //function Food(props)
-  //return <h3>I love {props.fav}</h3>; 
-  return <div>
-    <h2>I love {name}</h2>
-    <h4>{rating}/5.0</h4>
-    <img src = {picture} alt={name}></img>
-  </div>;
-}
-Food.propTypes = {
-  name : propTypes.string.isRequired,
-  picture : propTypes.string.isRequired,
-  rating : propTypes.number.isRequired
-};
-const foodILike = [
-  {
-    id:1,
-    name:"Kimchi",
-    image:"",
-    rating:5
-  },{
-    id:2,
-    name:"Samgyeopsal",
-    image:"",
-    rating:4.7
-  },{
-    id:3,
-    name:"Ramen",
-    image:"",
-    rating:4.8
-  },{
-    id:4,
-    name:"Suyug",
-    image:"",
-    rating:4.9
+
+class App extends React.Component{
+  state = { //state는 object
+    count :0
   }
-]
+  add = () => {
+    //setState를 호출할 때 마다 react는 새로운 state와 함께 render funcion을 호출한다
+    this.setState(current => ({ count : current.count +1 }))
+  };
+  minus = () => {
+    this.setState(current => ({ count : current.count -1 }))
+  };
+  //react는 class Component의 render method를 자동으로 실행한다.
+  render(){
+    return (
+    <div>
+      <h1>The number is {this.state.count}</h1>
+      <button onClick={this.add}>Add</button>
+      <button onClick={this.minus}>Minus</button>
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello!!</h1>
-      {foodILike.map(dish=>(
-        <Food key = {dish.id} name={dish.name} picture={dish.image} rating ={dish.rating}/>
-      ))}
-    </div>
-  );
+    </div>)
+  }
 }
-
-
-// function renderFood(dish){
-//   console.log(dish);
-//   return <Food name={dish.name} picture={dish.image}/> 
-// }
 export default App;
