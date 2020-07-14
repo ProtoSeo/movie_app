@@ -24,13 +24,14 @@ class App extends React.Component{
         <div className="movies">
           {    
             movies.map(movie=>{
+              console.log(movie.poster);
               return <Movie 
                 key = {movie.id}
                 id={movie.id} 
                 year={movie.year} 
                 title={movie.title} 
                 summary={movie.summary} 
-                poster={movie.poster}
+                poster={movie.large_cover_image}
                 genres={movie.genres}
               />
             }) }
